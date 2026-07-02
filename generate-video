@@ -1,0 +1,36 @@
+app.post("/generate-video", (req, res) => {
+
+    const ffmpeg = path.join(__dirname, "../bin/ffmpeg.exe");
+    const imagesPath = path.join(__dirname, "../images");
+    const music = path.join(__dirname, "../music.mp3");
+    const outputDir = path.join(__dirname, "../CherryVideo");
+
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
+
+    const output = path.join(outputDir, "birthday.mp4");
+
+    const command =
+        `"${ffmpeg}" -y ` +
+        `-framerate 1/2 ` +
+        `-i "${imagesPath}/photo%d.jpg" ` +
+        `-i "${music}" ` +
+        `-vf "scale=1080:1920,format=yuv420p" ` +
+        `-c:v libx264 -pix_fmt yuv420p -shortest "${output}"`;
+
+    console.log("RUNNING:", command);
+
+    exec(command, (err, stdout, stderr) => {
+
+        if (err) {
+            console.log("FFMPEG ERROR:");
+            console.log(stderr || err.message);
+            return res.status(500).send("Video generation failed");
+        }
+
+        console.log("SUCCESS");
+        res.download(output);
+    });
+
+});

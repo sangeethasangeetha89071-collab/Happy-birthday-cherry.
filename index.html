@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Cherry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- SCREEN 1: LOCKSCREEN -->
+    <div id="screen-lock" class="screen active">
+        <div class="split-layout">
+            <div class="polaroid-frame">
+                <img src="../images/1.jpg" alt="Birthday Special">
+            </div>
+            <div class="lockscreen-container">
+                <h2>Enter a passcode</h2>
+                <div class="display-dots" id="passcode-display">____</div>
+                <div class="keypad-grid">
+                    <button class="heart-btn" onclick="pressKey('1')">1</button>
+                    <button class="heart-btn" onclick="pressKey('2')">2</button>
+                    <button class="heart-btn" onclick="pressKey('3')">3</button>
+                    <button class="heart-btn" onclick="pressKey('4')">4</button>
+                    <button class="heart-btn" onclick="pressKey('5')">5</button>
+                    <button class="heart-btn" onclick="pressKey('6')">6</button>
+                    <button class="heart-btn" onclick="pressKey('7')">7</button>
+                    <button class="heart-btn" onclick="pressKey('8')">8</button>
+                    <button class="heart-btn" onclick="pressKey('9')">9</button>
+                    <button class="heart-btn" onclick="pressKey('*')">*</button>
+                    <button class="heart-btn" onclick="pressKey('0')">0</button>
+                    <button class="heart-btn" onclick="pressKey('#')">#</button>
+                </div>
+                <button class="btn-next" onclick="submitPasscode()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCREEN 1b: INTRO SLIDE -->
+    <div id="screen-intro" class="screen">
+        <h2>Happy Birthday My Love ❤️</h2>
+        <img class="display-photo" src="../images/2.jpg" alt="Intro Photo">
+        <button class="btn-next" onclick="changeScreen('screen-intro', 'screen-cake')">Next</button>
+    </div>
+
+    <!-- SCREEN 2: BIRTHDAY CAKE -->
+    <div id="screen-cake" class="screen">
+        <h2>Make a Wish 🎂</h2>
+        <div style="font-size: 100px; margin: 25px 0;">🎂</div>
+        <button class="btn-next" onclick="changeScreen('screen-cake', 'screen-balloons')">Blow</button>
+    </div>
+
+    <!-- SCREEN 3: BALLOONS PORTAL -->
+    <div id="screen-balloons" class="screen">
+        <h2>Pop all 4 Balloons 🎈</h2>
+        <div class="balloon-container">
+            <div class="balloon" onclick="popBalloon(this)"></div>
+            <div class="balloon" onclick="popBalloon(this)"></div>
+            <div class="balloon" onclick="popBalloon(this)"></div>
+            <div class="balloon" onclick="popBalloon(this)"></div>
+        </div>
+        <div id="balloon-message" style="display:none; margin-bottom: 20px;">
+            <div style="font-size: 60px; margin-bottom: 10px;">🐼</div>
+            <h3>You are so special, my cute little panda ✨</h3>
+        </div>
+        <button class="btn-next" id="balloon-next" style="display:none;" onclick="changeScreen('screen-balloons', 'screen-ask-gift')">Next</button>
+    </div>
+
+    <!-- SCREEN 4: GIFT ENTRANCE CONFIRMATION -->
+    <div id="screen-ask-gift" class="screen">
+        <h2>Do you want to open your gift? 🎁</h2>
+        <div class="choice-container">
+            <button class="btn-choice yes" onclick="changeScreen('screen-ask-gift', 'screen-gifts-hub')">Yes</button>
+            <button class="btn-choice" onclick="changeScreen('screen-ask-gift', 'screen-pretty-please')">No</button>
+        </div>
+    </div>
+
+    <!-- SCREEN 4b: REJECTION LOOP TRAP -->
+    <div id="screen-pretty-please" class="screen">
+        <h2>Pretty please? 🥺</h2>
+        <div style="font-size: 80px; margin: 20px;">😭</div>
+        <button class="btn-next" onclick="changeScreen('screen-pretty-please', 'screen-ask-gift')">Try Again</button>
+    </div>
+
+    <!-- SCREEN 5: CENTRAL HUB MATRIX -->
+    <div id="screen-gifts-hub" class="screen">
+        <h2>These are for you ❤️</h2>
+        <p style="font-size: 18px; opacity: 0.85; margin-top: 5px;">Choose a gift to open</p>
+        <div class="gift-grid">
+            <div class="gift-item" onclick="changeScreen('screen-gifts-hub', 'screen-gift-camera')">📷</div>
+            <div class="gift-item" onclick="changeScreen('screen-gifts-hub', 'screen-gift-letter')">✉️</div>
+            <div class="gift-item" onclick="changeScreen('screen-gifts-hub', 'screen-gift-video')">⭐️</div>
+        </div>
+    </div>
+
+    <!-- SUB-PORTAL: CAMERA VIEW -->
+    <div id="screen-gift-camera" class="screen">
+        <h2>Who is this beautiful? 😍</h2>
+        <video class="display-photo" src="../video/1000075894.mp4" autoplay loop muted playsinline></video>
+        <button class="btn-next" onclick="changeScreen('screen-gift-camera', 'screen-gifts-hub')">Back</button>
+    </div>
+
+    <!-- SCROLLING LETTER PORTAL -->
+    <div id="screen-gift-letter" class="screen">
+        <div class="letter-scroll-container">
+            <h3>Happy Birthday Cherry... ❤️🎂🥹</h3>
+            <p><strong>Naa Bangaram,</strong></p>
+            <p>First of all... Happy Birthday to the most precious person who unexpectedly became one of the most important people in my life. ❤️</p>
+            <p>Thank you for coming into my life. Nijam cheppali ante, nuvvu naa life loki unexpected ga vachav... kani naa heart loki inka unexpected ga enter ayyi permanent ga stay aipoyav. I never thought someone I met unexpectedly would become my comfort person.</p>
+            <p>Naku exact ga eppudu start ayindo teliyadu, but whenever you're beside me, I feel happy. Inka important ga, I feel safe and secure. Ninnu emaina cheppochu ane confidence untundi. Naa happiness, overthinking, problems, random nonsense... anni cheppagalanu. You never made me feel judged. Adhe nee special quality.</p>
+            <p>One small thing adagala anukuntunna... Navvaku, emotional anukoku, over anukoku... but I really want to ask this.</p>
+            <p><strong>Can you please stay the same... forever? 🥹</strong></p>
+            <p>Life lo chala changes vastayi. Manam kotha people ni kalustam, kotha friendships vastayi. Maybe next year mana lives different untayi. Maybe someone new will become close to me, and someone new will become close to you too. But one thing I promise from the bottom of my heart...</p>
+            <p><strong>No one can ever replace your place.</strong><br>
+            No one can replace the comfort, the memories, the bond, or the vibe I have with you. You're one of a kind, Cherry. ❤️</p>
+            <p>I don't know what I did to deserve a friend like you, but I'm truly grateful that life brought you to me. Thank you for every laugh, every late-night conversation, every silly fight, every "are you okay?" message, and for simply existing in my life.</p>
+            <p>Whenever I think about us, one thing comes to my mind...</p>
+            <p><em>"Some people come into our lives unexpectedly, but they stay in our hearts forever."</em> ❤️</p>
+            <p>That's exactly who you are to me.</p>
+            <p>I pray that this birthday brings you endless happiness, peace, success, good health, and all the love you deserve. I hope every dream of yours comes true because no one deserves it more than you.</p>
+            <p>Please keep smiling. Keep being the beautiful soul you are. Don't ever change because the person you are today is exactly why I cherish you so much.</p>
+            <p>Once again...</p>
+            <p>Happy Birthday naa Cherry... naa Bangaram... naa safe place... naa biggest comfort. ❤️🥹</p>
+            <p>No matter where life takes us, distance, time, new people, or new chapters...<br>
+            I'll always be here for you, and you'll always have a permanent place in my heart.</p>
+            <p><strong>Love you endlessly. Happy Birthday, Bangaram. 🤍🎂✨</strong></p>
+        </div>
+        <button class="btn-next" style="margin-top:20px;" onclick="changeScreen('screen-gift-letter', 'screen-gifts-hub')">Back</button>
+    </div>    
+
+    <!-- STAR MEDIA VIDEO PLAYER PORTAL -->
+    <div id="screen-gift-video" class="screen">
+        <h2>Sending you hugss and...</h2>
+        <h3 style="margin-bottom: 20px; color: yellow;">LOTS OF LOVE</h3>
+        <div class="video-box">
+            <video id="giftVideo" src="../video/1000075895.mp4" controls playsinline></video>
+        </div>
+        <button class="btn-next" onclick="changeScreen('screen-gift-video', 'screen-gifts-hub')">Back</button>
+    </div>
+
+    <script>
+        let inputCode = "";
+        let poppedCount = 0;
+
+        function changeScreen(currentId, nextId) {
+            document.getElementById(currentId).classList.remove('active');
+            document.getElementById(nextId).classList.add('active');
+            
+            const giftVideo = document.getElementById('giftVideo');
+            const cameraVideo = document.querySelector('#screen-gift-camera video');
+
+            if (currentId === 'screen-gift-video' && giftVideo) giftVideo.pause();
+            if (currentId === 'screen-gift-camera' && cameraVideo) cameraVideo.pause();
+
+            if (nextId === 'screen-gift-video' && giftVideo) {
+                giftVideo.currentTime = 0;
+                giftVideo.play().catch(()=>{});
+            }
+            if (nextId === 'screen-gift-camera' && cameraVideo) {
+                cameraVideo.currentTime = 0;
+                cameraVideo.play().catch(()=>{});
+            }
+        }
+
+        function pressKey(num) {
+            if (inputCode.length < 4) {
+                inputCode += num;
+                document.getElementById('passcode-display').innerText = "*".repeat(inputCode.length) + "_".repeat(4 - inputCode.length);
+            }
+        }
+
+        function submitPasscode() {
+            if (inputCode === "1433") {
+                changeScreen('screen-lock', 'screen-intro');
+            } else {
+                alert("Incorrect Passcode. Try again! ❤️");
+                resetPasscode();
+            }
+        }
+
+        function resetPasscode() {
+            inputCode = "";
+            document.getElementById('passcode-display').innerText = "____";
+        }
+
+        function popBalloon(element) {
+            if (!element.classList.contains('popped')) {
+                element.classList.add('popped');
+                poppedCount++;
+                if (poppedCount === 4) {
+                    document.getElementById('balloon-message').style.display = 'block';
+                    document.getElementById('balloon-next').style.display = 'inline-block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
